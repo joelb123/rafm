@@ -220,7 +220,7 @@ def plddt_select_residues(
     plddt_list = []
     residue_list = []
     file_list = []
-    for row_num, row in stats.iterrows():
+    for unused_row_num, row in stats.iterrows():
         if (
             (row["residues_in_pLDDT"] >= min_length)
             and (row[criterion_label] >= criterion)
@@ -311,7 +311,7 @@ def plddt_plot_dists(
         residue_criterion - h_offset,
         (per_residue_val - v_offset) / 200.0,
         (
-            rf"$pLDDT$"
+            r"$pLDDT$"
             + f"\n= {residue_criterion},\n"
             + f"{100-per_residue_val}% pass\n"
             + "by residue"

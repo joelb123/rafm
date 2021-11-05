@@ -70,9 +70,11 @@ pre-commit-hooks = "*"
 sphinx-rtd-theme = "*"
 sphinx-click = "*"
 Pygments = "*"
+sh = "*"
+pytest-datadir-mgr = "*"
 
 [tool.poetry.scripts]
-rafm = "rafm.__main__:main"
+rafm = "rafm.__main__:cli"
 
 [tool.black]
 line-length = 79

@@ -50,6 +50,6 @@ def set_global_state(
     unused_state_str = f"{version}"  # noqa: F841
 
 
-def main() -> None:
+def cli() -> None:
     """Run the app."""
     APP()

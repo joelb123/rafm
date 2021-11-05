@@ -28,7 +28,7 @@ rafm Reliable AlphaFold Measures
 .. |Coverage| image:: https://codecov.io/gh/joelb123/rafm/branch/main/graph/badge.svg
     :target: https://codecov.io/gh/joelb123/rafm
     :alt: Codecov.io test coverage
-.. |Codacy| image:: https://api.codacy.com/project/badge/Grade/703bc20047ed41bd873901bf596da166
+.. |Codacy| image:: https://api.codacy.com/project/badge/Grade/fd5f97647de84f5e846172bc0a999766
     :target: https://www.codacy.com/gh/joelb123/rafm?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=joelb123/rafm&amp;utm_campaign=Badge_Grade
     :alt: Codacy.io grade
 .. |Issues| image:: https://img.shields.io/github/issues/joelb123/rafm.svg
@@ -150,8 +150,8 @@ Usage
         distributions of median *pLDDT* scores with a lower bound of 80 and
         per-residue *pLDDT* scores with a minimum of 80 looks like this:
 
-        .. image:: https://raw.githubusercontent.com/joelb123/rafm/master/docs/_static/dark_dist.png
-            :target: https://raw.githubusercontent.com/joelb123/rafm/master/docs/_static/dark_dist.png
+        .. image:: https://raw.githubusercontent.com/joelb123/rafm/master/docs/_static/dark_dists.png
+            :target: https://raw.githubusercontent.com/joelb123/rafm/master/docs/_static/dark_dists.png
             :alt: Distribution of *pLDDT80* scores and per-residue *pLDDT* scores
 
 * *stats*
