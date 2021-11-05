@@ -1,7 +1,7 @@
 ================================
 rafm Reliable AlphaFold Measures
 ================================
-| |PyPI| |Python Version| |Repo| |Downloads| |Dlrate|
+| |PyPI| |Python Version| |Repo| |Downloads| |Download_rate|
 
 | |License| |Tests| |Coverage| |Codacy| |Issues| |Health|
 
@@ -10,29 +10,29 @@ rafm Reliable AlphaFold Measures
 .. |Python Version| image:: https://img.shields.io/pypi/pyversions/rafm
    :target: https://pypi.org/project/rafm
    :alt: Supported Python Versions
-.. |Repo| image:: https://img.shields.io/github/last-commit/unmtransinfo/rafm
-    :target: https://github.com/unmtransinfo/rafm
+.. |Repo| image:: https://img.shields.io/github/last-commit/joelb123/rafm
+    :target: https://github.com/joelb123/rafm
     :alt: GitHub repository
 .. |Downloads| image:: https://pepy.tech/badge/rafm
      :target: https://pepy.tech/project/rafm
      :alt: Download stats
-.. |Dlrate| image:: https://img.shields.io/pypi/dm/rafm
-   :target: https://github.com/unmtransinfo/rafm
+.. |Download_rate| image:: https://img.shields.io/pypi/dm/rafm
+   :target: https://github.com/joelb123/rafm
    :alt: PYPI download rate
 .. |License| image:: https://img.shields.io/badge/License-BSD%203--Clause-blue.svg
-    :target: https://github.com/unmtransinfo/rafm/blob/master/LICENSE.txt
+    :target: https://github.com/joelb123/rafm/blob/master/LICENSE.txt
     :alt: License terms
-.. |Tests| image:: https://github.com/unmtransinfo/rafm/workflows/Tests/badge.svg
-   :target: https://github.com/unmtransinfo/rafm/actions?workflow=Tests
+.. |Tests| image:: https://github.com/joelb123/rafm/workflows/Tests/badge.svg
+   :target: https://github.com/joelb123/rafm/actions?workflow=Tests
    :alt: Tests
-.. |Coverage| image:: https://codecov.io/gh/unmtransinfo/rafm/branch/main/graph/badge.svg
-    :target: https://codecov.io/gh/unmtransinfo/rafm
+.. |Coverage| image:: https://codecov.io/gh/joelb123/rafm/branch/main/graph/badge.svg
+    :target: https://codecov.io/gh/joelb123/rafm
     :alt: Codecov.io test coverage
 .. |Codacy| image:: https://api.codacy.com/project/badge/Grade/703bc20047ed41bd873901bf596da166
-    :target: https://www.codacy.com/gh/unmtransinfo/rafm?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=unmtransinfo/rafm&amp;utm_campaign=Badge_Grade
+    :target: https://www.codacy.com/gh/joelb123/rafm?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=joelb123/rafm&amp;utm_campaign=Badge_Grade
     :alt: Codacy.io grade
-.. |Issues| image:: https://img.shields.io/github/issues/unmtransinfo/rafm.svg
-    :target:  https://github.com/unmtransinfo/rafm/issues
+.. |Issues| image:: https://img.shields.io/github/issues/joelb123/rafm.svg
+    :target:  https://github.com/joelb123/rafm/issues
     :alt: Issues reported
 .. |Read the Docs| image:: https://img.shields.io/readthedocs/rafm/latest.svg?label=Read%20the%20Docs
    :target: https://rafm.readthedocs.io/
@@ -41,8 +41,8 @@ rafm Reliable AlphaFold Measures
   :target: https://snyk.io/advisor/python/rafm
   :alt: Snyk health
 
-.. image:: https://raw.githubusercontent.com/unmtransinfo/rafm/master/docs/_static/calmodulin.png
-   :target: https://raw.githubusercontent.com/unmtransinfo/rafm/master/docs/_static/calmodulin.png
+.. image:: https://raw.githubusercontent.com/joelb123/rafm/master/docs/_static/calmodulin.png
+   :target: https://raw.githubusercontent.com/joelb123/rafm/master/docs/_static/calmodulin.png
    :alt: AlphaFold model and two crystal structures of calmodulin
 
 *rafm* computes per-model measures such as expected global *LDDT*
@@ -150,8 +150,8 @@ Usage
         distributions of median *pLDDT* scores with a lower bound of 80 and
         per-residue *pLDDT* scores with a minimum of 80 looks like this:
 
-        .. image:: https://raw.githubusercontent.com/unmtransinfo/rafm/master/docs/_static/tdark_dist.png
-            :target: https://raw.githubusercontent.com/unmtransinfo/rafm/master/docs/_static/tdark_dist.png
+        .. image:: https://raw.githubusercontent.com/joelb123/rafm/master/docs/_static/dark_dist.png
+            :target: https://raw.githubusercontent.com/joelb123/rafm/master/docs/_static/dark_dist.png
             :alt: Distribution of *pLDDT80* scores and per-residue *pLDDT* scores
 
 * *stats*
@@ -167,15 +167,15 @@ The distributions of *LDDT* scores for the passing and non-passing sets, along
 with an (overlapping) set of PDB files at 100% sequence identity over
 at least 80% of the sequence looks like this:
 
-.. image:: https://raw.githubusercontent.com/unmtransinfo/rafm/master/docs/_static/lddt_dist.png
-   :target: https://raw.githubusercontent.com/unmtransinfo/rafm/master/docs/_static/lddt_dist.png
+.. image:: https://raw.githubusercontent.com/joelb123/rafm/master/docs/_static/lddt_dist.png
+   :target: https://raw.githubusercontent.com/joelb123/rafm/master/docs/_static/lddt_dist.png
    :alt: Distribution of high-scoring, low-scoring, and high-similarity structures
 
 The markers on the *x*-axis refer to the size of conformational changes
 observed in conformational changes in various protein crystal structures:
 
 * *CALM*
-    Between calcum-bound and calcium-free calmodulin
+    Between calcium-bound and calcium-free calmodulin
     (depicted in the logo image above).
 * *ERK2*
     Between unphosphorylated and doubly-phosphorylated ERK2 kinase.
@@ -191,16 +191,15 @@ for a surface defined by contacts between two residues. A choice of 91.2 as a
 criterion leads to the following confusion matrix versus a set of post-training
 crystal structures:
 
-.. image:: https://raw.githubusercontent.com/unmtransinfo/rafm/master/docs/_static/confusion_matrix.png
-   :target: https://raw.githubusercontent.com/unmtransinfo/rafm/master/docs/_static/confusion_matrix.png
+.. image:: https://raw.githubusercontent.com/joelb123/rafm/master/docs/_static/confusion_matrix.png
+   :target: https://raw.githubusercontent.com/joelb123/rafm/master/docs/_static/confusion_matrix.png
    :alt: Confusion matrix of AlphaFold models vs. crystal structures
 
 At a correlation coefficient of 0.71, this correlation isn't great, but enough
 to demonstrate a usable sensitivity.  After we fix a few problems with the
 alignments, it may go a bit higher but our feeling is probably not
-more than about 0.8.
-The support will get better, but the criterion on this metrix seems
-unlikely to change.
+more than about 0.8.  The support will get better, but the criterion on this
+metric seems unlikely to change.
 
 
 Contributing
@@ -235,8 +234,8 @@ This project was generated from the
 .. _Cookiecutter: https://github.com/audreyr/cookiecutter
 .. _MIT license: https://opensource.org/licenses/MIT
 .. _PyPI: https://pypi.org/
-.. _UNM Translational Informatics Python Cookiecutter: https://github.com/unmtransinfo/cookiecutter-unmtransinfo-python
-.. _file an issue: https://github.com/unmtransinfo/rafm/issues
+.. _UNM Translational Informatics Python Cookiecutter: https://github.com/joelb123/cookiecutter-joelb123-python
+.. _file an issue: https://github.com/joelb123/rafm/issues
 .. _pip: https://pip.pypa.io/
 .. github-only
 .. _Contributor Guide: CONTRIBUTING.rst

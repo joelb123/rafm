@@ -89,8 +89,7 @@ def compute_plddt_stats(
     if n_pts >= min_length:
         mean = plddts.mean().round(2)
         median = np.median(plddts).round(2)
-        obs = plddts[(plddts >= lower_bound) &
-                     (plddts <= upper_bound)]
+        obs = plddts[(plddts >= lower_bound) & (plddts <= upper_bound)]
         n_trunc_obs = len(obs)
         if len(obs) >= min_count:
             trunc_mean = obs.mean().round(2)
@@ -168,8 +167,9 @@ def plddt_stats(
     stats = stats.reset_index()
     stats.index.name = f"{NAME}-{VERSION}"
     del stats["index"]
-    if ((lower_bound == DEFAULT_PLDDT_LOWER_BOUND) and
-            (upper_bound == DEFAULT_PLDDT_UPPER_BOUND)):
+    if (lower_bound == DEFAULT_PLDDT_LOWER_BOUND) and (
+        upper_bound == DEFAULT_PLDDT_UPPER_BOUND
+    ):
         file_col = stats["file"]
         del stats["file"]
         stats["LDDT_expect"] = (
@@ -180,16 +180,14 @@ def plddt_stats(
                 / (1.0 - DEFAULT_PLDDT_CRITERION / 100.0)
             )
         ).round(3)
-        stats["passing"] = (stats["LDDT_expect"] >= DEFAULT_LDDT_CRITERION)
+        stats["passing"] = stats["LDDT_expect"] >= DEFAULT_LDDT_CRITERION
         stats["file"] = file_col
     stats.to_csv(stats_file_path, sep="\t")
     total_residues = int(stats["residues_in_pLDDT"].sum())
     STATS["total_residues"] = Stat(
         total_residues, desc="number of residues in all models"
     )
-    selected_stats = stats[
-        stats[criterion_label] >= criterion
-    ]
+    selected_stats = stats[stats[criterion_label] >= criterion]
     n_models_selected = len(selected_stats)
     frac_models_selected = round(n_models_selected * 100.0 / n_models_in, 0)
     STATS["models_selected"] = Stat(
@@ -249,7 +247,7 @@ def plddt_plot_dists(
     upper_bound: Optional[int] = DEFAULT_PLDDT_UPPER_BOUND,
     file_stem: Optional[str] = MODULE_NAME,
     out_file_type: Optional[str] = DEFAULT_OUT_FILE_TYPE,
-    residue_criterion: Optional[int] = DEFAULT_RESIDUE_CRITERION
+    residue_criterion: Optional[int] = DEFAULT_RESIDUE_CRITERION,
 ) -> None:
     """Plot histograms of per-model and per-residue pLDDT distributions."""
     stats_file_path = Path(f"{file_stem}_plddt_stats.tsv")
@@ -264,19 +262,18 @@ def plddt_plot_dists(
     select_residues = pd.read_csv(res_file_path, sep="\t")
     n_select = len(per_model[per_model[criterion_label] >= criterion])
     n_models = len(per_model)
-    n_select_residues = len(select_residues[select_residues["pLDDT"] >= residue_criterion])
+    n_select_residues = len(
+        select_residues[select_residues["pLDDT"] >= residue_criterion]
+    )
     fig = plt.figure()
     ax = fig.add_subplot(111)
-    sns.ecdfplot(data=per_model,
-                 x=x_axis,
-                 ax=ax,
-                 color="darkblue")
+    sns.ecdfplot(data=per_model, x=x_axis, ax=ax, color="darkblue")
     sns.ecdfplot(
         data=select_residues,
         x="pLDDT",
         ax=ax,
         linestyle="dashed",
-        color="orange"
+        color="orange",
     )
     if upper_bound != DEFAULT_PLDDT_UPPER_BOUND:
         upper_bound_str = f"-{upper_bound}"
@@ -288,30 +285,39 @@ def plddt_plot_dists(
             rf"$pLDDT$ by residue of {n_select} passing models",
         ]
     )
-    per_model_val = 100 - round(int(n_select*100./n_models), 0)
-    hoffset = -1
-    voffset = -10
-    ax.vlines(criterion, 0.0, per_model_val/100., color="darkblue")
-    ax.text(criterion-hoffset, (per_model_val - voffset)/200.,
-            (rf"$pLDDT_{{{lower_bound}{upper_bound_str}}}$" +
-             f"\n = {criterion},\n" +
-             f"{100-per_model_val}% pass\n" +
-             "by model"
-             ),
-            color="darkblue")
-    per_residue_val = 100 - int(round(n_select_residues*100./len(select_residues), 0))
+    per_model_val = 100 - round(int(n_select * 100.0 / n_models), 0)
+    h_offset = -1
+    v_offset = -10
+    ax.vlines(criterion, 0.0, per_model_val / 100.0, color="darkblue")
+    ax.text(
+        criterion - h_offset,
+        (per_model_val - v_offset) / 200.0,
+        (
+            rf"$pLDDT_{{{lower_bound}{upper_bound_str}}}$"
+            + f"\n = {criterion},\n"
+            + f"{100-per_model_val}% pass\n"
+            + "by model"
+        ),
+        color="darkblue",
+    )
+    per_residue_val = 100 - int(
+        round(n_select_residues * 100.0 / len(select_residues), 0)
+    )
     STATS["usable_residues_pct"] = Stat(
-        100 - per_residue_val,
-        desc=f"residues with LDDT > {residue_criterion}")
-    voffset = 10
-    ax.text(residue_criterion-hoffset,
-            (per_residue_val-voffset)/200.,
-            (rf"$pLDDT$" +
-             f"\n= {residue_criterion},\n" +
-             f"{100-per_residue_val}% pass\n" +
-             "by residue"
-             ),
-            color="orange")
+        100 - per_residue_val, desc=f"residues with LDDT > {residue_criterion}"
+    )
+    v_offset = 10
+    ax.text(
+        residue_criterion - h_offset,
+        (per_residue_val - v_offset) / 200.0,
+        (
+            rf"$pLDDT$"
+            + f"\n= {residue_criterion},\n"
+            + f"{100-per_residue_val}% pass\n"
+            + "by residue"
+        ),
+        color="orange",
+    )
     logger.info(f"Saving {fig_file_path}")
     sns.despine()
     plt.savefig(fig_file_path, dpi=300)

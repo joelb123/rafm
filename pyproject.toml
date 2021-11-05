@@ -2,11 +2,14 @@
 name = "rafm"
 version = "1.0.0"
 description = "rafm"
-authors = ["UNM Translational Informatics Team <datascience.software@salud.unm.edu>"]
+authors = [
+    "Joel Berendzen <joel@generisbio.com>", 
+    "Jessica Binder <jlmaine85@gmail.com>"
+]
 license = "MIT"
 readme = "README.rst"
-homepage = "https://github.com/unmtransinfo/rafm"
-repository = "https://github.com/unmtransinfo/rafm"
+homepage = "https://github.com/joelb123/rafm"
+repository = "https://github.com/joelb123/rafm"
 documentation = "https://rafm.readthedocs.io"
 classifiers = [
     "Development Status :: 5 - Production/Stable",
@@ -30,17 +33,19 @@ keywords = [
 ]
 
 [tool.poetry.urls]
-Changelog = "https://github.com/unmtransinfo/rafm/releases"
+Changelog = "https://github.com/joelb123/rafm/releases"
 
 [tool.poetry.dependencies]
 python = "^3.8.1, <3.10"
 typer = "*"
 numpy = "*"
-loguru = "^0.5.3"
-statsdict = "^0.1.3"
-pandas = "^1.3.4"
-matplotlib = "^3.4.3"
-seaborn = "^0.11.2"
+loguru = "*"
+statsdict = "*"
+pandas = "*"
+matplotlib = "*"
+seaborn = "*"
+streamlit = "*"
+stmol = "*"
 
 [tool.poetry.dev-dependencies]
 pytest = "*"

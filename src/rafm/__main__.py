@@ -10,9 +10,13 @@ from . import VERSION
 from .common import APP
 from .common import STATE
 from .plddt import plddt_stats
+from .show import show
 
 # global constants
-unused_commands = (plddt_stats,)
+unused_commands = (
+    plddt_stats,
+    show,
+)
 click_object = typer.main.get_command(APP)  # noqa: F841
 
 
