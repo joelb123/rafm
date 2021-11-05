@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 """Command-line interface and logging configuration."""
 # standard-library imports
-
 from typing import Optional
 
 import typer
@@ -10,13 +9,9 @@ from . import VERSION
 from .common import APP
 from .common import STATE
 from .plddt import plddt_stats
-from .show import show
 
 # global constants
-unused_commands = (
-    plddt_stats,
-    show,
-)
+unused_commands = (plddt_stats,)
 click_object = typer.main.get_command(APP)  # noqa: F841
 
 
@@ -47,7 +42,7 @@ def set_global_state(
         STATE["log_level"] = "DEBUG"
     elif quiet:
         STATE["log_level"] = "ERROR"
-    unused_state_str = f"{version}"  # noqa: F841
+    _state_str = f"{version}"  # noqa: F841
 
 
 def cli() -> None:

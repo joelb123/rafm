@@ -6,8 +6,6 @@ from typing import List
 from typing import Optional
 from typing import Tuple
 
-
-# 3rd-party imports
 import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
@@ -15,11 +13,13 @@ import seaborn as sns
 from loguru import logger
 from statsdict import Stat
 
-# module imports
 from . import NAME
 from . import VERSION
 from .common import APP
 from .common import STATS
+
+# 3rd-party imports
+# module imports
 
 # global constants
 ATOM_REC: str = "ATOM"
@@ -43,7 +43,11 @@ MODULE_NAME = __name__.split(".")[0]
 EMPTY_PATH = Path()
 
 
-def bin_labels(bin_type, lower_bound, upper_bound=DEFAULT_PLDDT_UPPER_BOUND):
+def bin_labels(
+    bin_type: str,
+    lower_bound: int,
+    upper_bound: Optional[int] = DEFAULT_PLDDT_UPPER_BOUND,
+) -> str:
     """Create labels for bins of different quantities."""
     if upper_bound == DEFAULT_PLDDT_UPPER_BOUND:
         upper_label = ""
@@ -220,7 +224,7 @@ def plddt_select_residues(
     plddt_list = []
     residue_list = []
     file_list = []
-    for unused_row_num, row in stats.iterrows():
+    for _row_num, row in stats.iterrows():
         if (
             (row["residues_in_pLDDT"] >= min_length)
             and (row[criterion_label] >= criterion)
@@ -281,7 +285,10 @@ def plddt_plot_dists(
         upper_bound_str = ""
     ax.legend(
         labels=[
-            rf'$pLDDT_{{{lower_bound}{upper_bound_str}}}$ of {n_models} "{file_stem}" models',
+            (
+                rf"$pLDDT_{{{lower_bound}{upper_bound_str}}}$ of {n_models}"
+                + rf' "{file_stem}" models'
+            ),
             rf"$pLDDT$ by residue of {n_select} passing models",
         ]
     )

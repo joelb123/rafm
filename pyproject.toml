@@ -3,7 +3,7 @@ name = "rafm"
 version = "1.0.0"
 description = "rafm"
 authors = [
-    "Joel Berendzen <joel@generisbio.com>", 
+    "Joel Berendzen <joel@generisbio.com>",
     "Jessica Binder <jlmaine85@gmail.com>"
 ]
 license = "MIT"
@@ -52,6 +52,8 @@ pytest = "*"
 coverage = {extras = ["toml"], version = "*"}
 safety = "*"
 mypy = "*"
+nox = "*"
+nox-poetry = "*"
 typeguard = "*"
 xdoctest = {extras = ["colors"], version = "*"}
 sphinx = "*"
@@ -72,6 +74,13 @@ sphinx-click = "*"
 Pygments = "*"
 sh = "*"
 pytest-datadir-mgr = "*"
+data-science-types = "*"
+#sphinx.ext.napoleon = "*"
+#sphinx.ext.autodoc = "*"
+#sphinx.ext.napoleon = "*"
+#sphinx_rtd_theme = "*"
+#sphinx.ext.doctest = "*"
+#sphinx_multiversion = "*"
 
 [tool.poetry.scripts]
 rafm = "rafm.__main__:cli"
