@@ -136,7 +136,7 @@ def tests(session: Session) -> None:
     """Run the test suite."""
     session.install(".")
     session.install(
-        "coverage[toml]", "pytest", "pygments", "sh", "pytest_datadir_mgr"
+        "coverage[toml]", "pytest", "pygments", "sh"
     )
     try:
         session.run("coverage", "run", "-m", "pytest", *session.posargs)
