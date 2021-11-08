@@ -141,7 +141,6 @@ def tests(session: Session) -> None:
     try:
         session.run("coverage", "run", "-m", "pytest", *session.posargs)
     finally:
-        #if session.interactive:
         session.notify("coverage", posargs=[])
 
 
