@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
-"""Find hydrated waters in structure."""
-# standard library imports
+"""Operations on pLDDT statistics."""
 from pathlib import Path
 from typing import List
 from typing import Optional
@@ -9,7 +8,7 @@ from typing import Tuple
 import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
-import seaborn as sns
+import seaborn as sns  # type: ignore
 from loguru import logger
 from statsdict import Stat
 
@@ -17,9 +16,6 @@ from . import NAME
 from . import VERSION
 from .common import APP
 from .common import STATS
-
-# 3rd-party imports
-# module imports
 
 # global constants
 ATOM_REC: str = "ATOM"
@@ -75,12 +71,12 @@ def extract_b_factors(file_path: Path) -> List[float]:
 
 
 def compute_plddt_stats(
-    file_path,
-    lower_bound=DEFAULT_PLDDT_LOWER_BOUND,
-    min_count=DEFAULT_MIN_COUNT,
-    min_length=DEFAULT_MIN_LENGTH,
-    upper_bound=DEFAULT_PLDDT_UPPER_BOUND,
-):
+    file_path: Path,
+    lower_bound: float = DEFAULT_PLDDT_LOWER_BOUND,
+    min_count: int = DEFAULT_MIN_COUNT,
+    min_length: int = DEFAULT_MIN_LENGTH,
+    upper_bound: int = DEFAULT_PLDDT_UPPER_BOUND,
+) -> Tuple[int, float, float, float, float, float, float, str]:
     """Compute stats on pLDDTs for a PDB file specified by file_path."""
     plddts = np.array(extract_b_factors(file_path))
     n_pts = len(plddts)
@@ -92,12 +88,12 @@ def compute_plddt_stats(
     trunc_frac = np.NAN
     if n_pts >= min_length:
         mean = plddts.mean().round(2)
-        median = np.median(plddts).round(2)
-        obs = plddts[(plddts >= lower_bound) & (plddts <= upper_bound)]
+        median = np.median(plddts).round(2)  # type: ignore
+        obs = plddts[(plddts >= lower_bound) & (plddts <= upper_bound)]  # type: ignore
         n_trunc_obs = len(obs)
         if len(obs) >= min_count:
             trunc_mean = obs.mean().round(2)
-            trunc_median = np.median(obs).round(2)
+            trunc_median = np.median(obs).round(2)  # type: ignore
             trunc_frac = round(n_trunc_obs / n_pts, 2)
     return (
         n_pts,
@@ -114,17 +110,19 @@ def compute_plddt_stats(
 @APP.command()
 @STATS.auto_save_and_report
 def plddt_stats(
-    pdb_list: Optional[List[Path]],
-    criterion: Optional[float] = DEFAULT_PLDDT_CRITERION,
-    min_length: Optional[int] = DEFAULT_MIN_LENGTH,
-    min_count: Optional[int] = DEFAULT_MIN_COUNT,
-    lower_bound: Optional[int] = DEFAULT_PLDDT_LOWER_BOUND,
-    upper_bound: Optional[int] = DEFAULT_PLDDT_UPPER_BOUND,
-    file_stem: Optional[str] = MODULE_NAME,
+    pdb_list: List[Path],
+    criterion: float = DEFAULT_PLDDT_CRITERION,
+    min_length: int = DEFAULT_MIN_LENGTH,
+    min_count: int = DEFAULT_MIN_COUNT,
+    lower_bound: int = DEFAULT_PLDDT_LOWER_BOUND,
+    upper_bound: int = DEFAULT_PLDDT_UPPER_BOUND,
+    file_stem: str = MODULE_NAME,
 ) -> None:
     """Calculate stats on bounded pLDDTs from list of PDB model files."""
     results = []
-    criterion_label = bin_labels(CRITERION_TYPE, lower_bound, upper_bound)
+    criterion_label = bin_labels(
+        CRITERION_TYPE, lower_bound, upper_bound=upper_bound
+    )
     stats_file_path = Path(f"{file_stem}_plddt_stats.tsv")
     n_models_in = len(pdb_list)
     STATS["models_in"] = Stat(n_models_in, desc="models read in")
@@ -169,13 +167,13 @@ def plddt_stats(
     logger.info(f"Writing stats to {stats_file_path}")
     stats.sort_values(by=criterion_label, inplace=True, ascending=False)
     stats = stats.reset_index()
-    stats.index.name = f"{NAME}-{VERSION}"
-    del stats["index"]
+    stats.index.name = f"{NAME}-{VERSION}"  # type: ignore
+    del stats["index"]  # type: ignore
     if (lower_bound == DEFAULT_PLDDT_LOWER_BOUND) and (
         upper_bound == DEFAULT_PLDDT_UPPER_BOUND
     ):
         file_col = stats["file"]
-        del stats["file"]
+        del stats["file"]  # type: ignore
         stats["LDDT_expect"] = (
             1.0
             - (
@@ -183,7 +181,9 @@ def plddt_stats(
                 * (1.0 - DEFAULT_LDDT_CRITERION)
                 / (1.0 - DEFAULT_PLDDT_CRITERION / 100.0)
             )
-        ).round(3)
+        ).round(  # type: ignore
+            3
+        )
         stats["passing"] = stats["LDDT_expect"] >= DEFAULT_LDDT_CRITERION
         stats["file"] = file_col
     stats.to_csv(stats_file_path, sep="\t")
@@ -209,12 +209,12 @@ def plddt_stats(
 
 @APP.command()
 def plddt_select_residues(
-    criterion: Optional[float] = DEFAULT_PLDDT_CRITERION,
-    min_length: Optional[int] = DEFAULT_MIN_LENGTH,
-    min_count: Optional[int] = DEFAULT_MIN_COUNT,
-    lower_bound: Optional[int] = DEFAULT_PLDDT_LOWER_BOUND,
-    upper_bound: Optional[int] = DEFAULT_PLDDT_UPPER_BOUND,
-    file_stem: Optional[str] = MODULE_NAME,
+    criterion: float = DEFAULT_PLDDT_CRITERION,
+    min_length: int = DEFAULT_MIN_LENGTH,
+    min_count: int = DEFAULT_MIN_COUNT,
+    lower_bound: int = DEFAULT_PLDDT_LOWER_BOUND,
+    upper_bound: int = DEFAULT_PLDDT_UPPER_BOUND,
+    file_stem: str = MODULE_NAME,
 ) -> None:
     """Select residues from files matching criterion."""
     stats_file_path = Path(f"{file_stem}_plddt_stats.tsv")
@@ -246,12 +246,12 @@ def plddt_select_residues(
 @APP.command()
 @STATS.auto_save_and_report
 def plddt_plot_dists(
-    criterion: Optional[float] = DEFAULT_PLDDT_CRITERION,
-    lower_bound: Optional[int] = DEFAULT_PLDDT_LOWER_BOUND,
-    upper_bound: Optional[int] = DEFAULT_PLDDT_UPPER_BOUND,
-    file_stem: Optional[str] = MODULE_NAME,
-    out_file_type: Optional[str] = DEFAULT_OUT_FILE_TYPE,
-    residue_criterion: Optional[int] = DEFAULT_RESIDUE_CRITERION,
+    criterion: float = DEFAULT_PLDDT_CRITERION,
+    lower_bound: int = DEFAULT_PLDDT_LOWER_BOUND,
+    upper_bound: int = DEFAULT_PLDDT_UPPER_BOUND,
+    file_stem: str = MODULE_NAME,
+    out_file_type: str = DEFAULT_OUT_FILE_TYPE,
+    residue_criterion: int = DEFAULT_RESIDUE_CRITERION,
 ) -> None:
     """Plot histograms of per-model and per-residue pLDDT distributions."""
     stats_file_path = Path(f"{file_stem}_plddt_stats.tsv")
@@ -295,8 +295,8 @@ def plddt_plot_dists(
     per_model_val = 100 - round(int(n_select * 100.0 / n_models), 0)
     h_offset = -1
     v_offset = -10
-    ax.vlines(criterion, 0.0, per_model_val / 100.0, color="darkblue")
-    ax.text(
+    ax.vlines(criterion, 0.0, per_model_val / 100.0, color="darkblue")  # type: ignore
+    ax.text(  # type: ignore
         criterion - h_offset,
         (per_model_val - v_offset) / 200.0,
         (
@@ -314,7 +314,7 @@ def plddt_plot_dists(
         100 - per_residue_val, desc=f"residues with LDDT > {residue_criterion}"
     )
     v_offset = 10
-    ax.text(
+    ax.text(  # type: ignore
         residue_criterion - h_offset,
         (per_residue_val - v_offset) / 200.0,
         (
