@@ -7,14 +7,14 @@ from pathlib import Path
 import pytest
 import sh
 
-from . import help_check
 from . import COMMAND
+from . import help_check
 from . import INPUTS
 from . import PDB_1
 from . import PDB_2
+from . import print_docstring
 from . import STATS_OUTPUTS
 from . import STEM
-from . import print_docstring
 
 # global constants
 SUBCOMMAND = "plddt-stats"

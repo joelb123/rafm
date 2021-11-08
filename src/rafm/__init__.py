@@ -9,7 +9,6 @@ Copyright © 2021, The University of New Mexico.
 Copyright © 2021, GenerisBio, LLC.
 All rights reserved.
 """  # noqa: D301
-
 from importlib import metadata
 
 NAME = "rafm"

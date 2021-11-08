@@ -6,6 +6,7 @@ from pathlib import Path
 
 from . import print_docstring
 
+
 @print_docstring()
 def test_clean_datadir(request):
     """Clean up datadir."""

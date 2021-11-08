@@ -121,7 +121,9 @@ def mypy(session: Session) -> None:
     """Type-check using mypy."""
     args = session.posargs or ["src", "docs/conf.py"]
     session.install(".")
-    session.install("mypy", "pytest", "sh", "data-science-types")
+    session.install(
+        "mypy", "pytest", "sh", "data-science-types", "pytest_datadir_mgr"
+    )
     session.run("mypy", *args)
     if not session.posargs:
         session.run(
@@ -133,7 +135,9 @@ def mypy(session: Session) -> None:
 def tests(session: Session) -> None:
     """Run the test suite."""
     session.install(".")
-    session.install("coverage[toml]", "pytest", "pygments", "sh")
+    session.install(
+        "coverage[toml]", "pytest", "pygments", "sh", "pytest_datadir_mgr"
+    )
     try:
         session.run("coverage", "run", "-m", "pytest", *session.posargs)
     finally:
@@ -159,7 +163,12 @@ def typeguard(session: Session) -> None:
     """Runtime type checking using Typeguard."""
     session.install(".")
     session.install(
-        "pytest", "typeguard", "pygments", "sh", "data-science-types"
+        "pytest",
+        "typeguard",
+        "pygments",
+        "sh",
+        "data-science-types",
+        "pytest_datadir_mgr",
     )
     session.run("pytest", f"--typeguard-packages={package}", *session.posargs)
 

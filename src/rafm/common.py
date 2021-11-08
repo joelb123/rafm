@@ -2,18 +2,20 @@
 """Global constants and CLI functions in common."""
 # standard library imports
 from __future__ import annotations
+
 import sys
 from typing import TypedDict
 
-# third-party imports
 import loguru
 import typer
 from loguru import logger
 from statsdict import StatsDict
 
-# module imports
-from . import NAME
 from . import __doc__ as docstring
+from . import NAME
+
+# third-party imports
+# module imports
 
 # global constants
 DEFAULT_STDERR_LOG_LEVEL = "INFO"

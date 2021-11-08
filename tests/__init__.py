@@ -1,4 +1,3 @@
-"""Test suite for the rafm package."""
 """Base for pytest testing."""
 # standard library imports
 import contextlib
@@ -7,11 +6,9 @@ import os
 from pathlib import Path
 from typing import Callable
 
-# third-party imports
 import pytest
 import sh
 from sh import ErrorReturnCode
-
 
 # global constants
 PROGRAM_NAME = "rafm"
