@@ -136,10 +136,15 @@ def tests(session: Session) -> None:
     """Run the test suite."""
     session.install(".")
     session.install(
-        "coverage[toml]", "pytest", "pygments", "sh", "pytest_datadir_mgr"
+        "coverage[toml]",
+        "pytest",
+        "pytest-cov",
+        "pygments",
+        "sh",
+        "pytest_datadir_mgr",
     )
     try:
-        session.run("coverage", "run", "-m", "pytest", *session.posargs)
+        session.run("pytest", "--cov=rafm", "tests/", *session.posargs)
     finally:
         session.notify("coverage", posargs=[])
 

@@ -77,10 +77,10 @@ pytest-datadir-mgr = "*"
 data-science-types = "*"
 #sphinx.ext.napoleon = "*"
 #sphinx.ext.autodoc = "*"
-#sphinx.ext.napoleon = "*"
 #sphinx_rtd_theme = "*"
 #sphinx.ext.doctest = "*"
 #sphinx_multiversion = "*"
+pytest-cov = "*"
 
 [tool.poetry.scripts]
 rafm = "rafm.__main__:cli"
