@@ -155,11 +155,12 @@ def coverage(session: Session) -> None:
     """Produce the coverage report."""
     args = session.posargs or ["report"]
 
-    session.install("coverage[toml]")
+    session.install("coverage[toml]", "pytest-cov")
 
     if not session.posargs and any(Path().glob(".coverage.*")):
         session.run("coverage", "combine")
-
+    cov_path = Path(".coverage")
+    session.log(f"coverage path {cov_path.exists()}")
     session.run("coverage", *args)
 
 
