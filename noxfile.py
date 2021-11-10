@@ -146,7 +146,8 @@ def tests(session: Session) -> None:
     try:
         session.run("pytest", "--cov=rafm", "tests/", *session.posargs)
     finally:
-        session.notify("coverage", posargs=[])
+        if session.interactive:
+            session.notify("coverage", posargs=[])
 
 
 @session

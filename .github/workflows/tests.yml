@@ -76,8 +76,8 @@ jobs:
 
       - name: Run Nox
         run: |
-          nox --force-color --python=${{ matrix.python-version }} -s tests
-      
+          nox --force-color --python=${{ matrix.python-version }}
+
       - name: Show coverage files
         run: |
           ls -l .cov*
@@ -87,7 +87,7 @@ jobs:
         uses: "actions/upload-artifact@v2.2.4"
         with:
           name: coverage-data
-          path: ".coverage"
+          path: .coverage
 
       - name: Upload documentation
         if: matrix.session == 'docs-build'
@@ -127,6 +127,10 @@ jobs:
         uses: actions/download-artifact@v2.0.10
         with:
           name: coverage-data
+
+      - name: Show coverage files
+        run: |
+          ls -l .coverage
 
       - name: Combine coverage data and display human readable report
         run: |
