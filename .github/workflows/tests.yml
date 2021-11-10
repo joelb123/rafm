@@ -78,10 +78,6 @@ jobs:
         run: |
           nox --force-color --python=${{ matrix.python-version }}
 
-      - name: Show coverage files
-        run: |
-          ls -l .cov*
-
       - name: Upload coverage data
         if: always() && matrix.session == 'tests'
         uses: "actions/upload-artifact@v2.2.4"
@@ -130,6 +126,7 @@ jobs:
 
       - name: Show coverage files
         run: |
+          ls -al
           ls -l .coverage
 
       - name: Combine coverage data and display human readable report
