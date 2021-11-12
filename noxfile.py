@@ -150,6 +150,8 @@ def tests(session: Session) -> None:
             "COVERAGE_FILE"
         ] = f".coverage.{randint(0,99999999)}"  # noqa: S311
         session.run("pytest", "--cov=rafm", "tests/", *session.posargs)
+        cov_list = list(Path().glob(".cov*"))
+        session.log(f"coverage files = {cov_list}")
     finally:
         if session.interactive:
             session.notify("coverage", posargs=[])
