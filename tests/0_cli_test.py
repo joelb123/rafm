@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
 """Tests for basic CLI function."""
-# third-party imports
 import pytest
 import sh
 

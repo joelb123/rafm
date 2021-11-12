@@ -1,7 +1,9 @@
 """Nox sessions."""
+import os
 import shutil
 import sys
 from pathlib import Path
+from random import randint
 from textwrap import dedent
 
 import nox
@@ -144,6 +146,9 @@ def tests(session: Session) -> None:
         "pytest_datadir_mgr",
     )
     try:
+        os.environ[
+            "COVERAGE_FILE"
+        ] = f".coverage.{randint(0,99999999)}"  # noqa: S311
         session.run("pytest", "--cov=rafm", "tests/", *session.posargs)
     finally:
         if session.interactive:
@@ -155,12 +160,10 @@ def coverage(session: Session) -> None:
     """Produce the coverage report."""
     args = session.posargs or ["report"]
 
-    session.install("coverage[toml]", "pytest-cov")
+    session.install("coverage[toml]")
 
     if not session.posargs and any(Path().glob(".coverage.*")):
         session.run("coverage", "combine")
-    cov_path = Path(".coverage")
-    session.log(f"coverage path {cov_path.exists()}")
     session.run("coverage", *args)
 
 
