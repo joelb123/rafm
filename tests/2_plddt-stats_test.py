@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-"""Tests for data ingestion."""
+"""Tests for calculating stats."""
 import json
 import sys
 from pathlib import Path
@@ -11,11 +11,11 @@ import sh
 from . import COMMAND
 from . import GLOBAL_STATS_FILE
 from . import help_check
-from . import INPUTS
 from . import MODEL_FILE_1_NAME
 from . import MODEL_FILE_2_NAME
 from . import print_docstring
 from . import STATS_FILE
+from . import STATS_INPUTS
 from . import STATS_OUTPUTS
 from . import STEM
 from . import TOLERANCE
@@ -33,9 +33,9 @@ def test_subcommand_help():
 def test_plddt_stats(datadir_mgr):
     """Test plddt-stats command."""
     with datadir_mgr.in_tmp_dir(
-        inpathlist=INPUTS,
+        inpathlist=STATS_INPUTS,
         save_outputs=True,
-        outscope="module",
+        outscope="global",
     ):
         args = [
             "--verbose",

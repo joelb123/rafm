@@ -208,6 +208,7 @@ def plddt_stats(
 
 
 @APP.command()
+@STATS.auto_save_and_report
 def plddt_select_residues(
     criterion: float = DEFAULT_PLDDT_CRITERION,
     min_length: int = DEFAULT_MIN_LENGTH,
@@ -241,10 +242,14 @@ def plddt_select_residues(
     out_file_path = Path(f"{file_stem}_plddt{lower_bound}_{criterion}.tsv")
     logger.info(f"Writing residue file {out_file_path}")
     df.to_csv(out_file_path, sep="\t")
+    n_select_residues = len(df[df["pLDDT"] >= criterion])
+    per_residue_val = 100 - int(round(n_select_residues * 100.0 / len(df), 0))
+    STATS["usable_residues_pct"] = Stat(
+        100 - per_residue_val, desc=f"residues with LDDT > {criterion}"
+    )
 
 
 @APP.command()
-@STATS.auto_save_and_report
 def plddt_plot_dists(
     criterion: float = DEFAULT_PLDDT_CRITERION,
     lower_bound: int = DEFAULT_PLDDT_LOWER_BOUND,
@@ -309,9 +314,6 @@ def plddt_plot_dists(
     )
     per_residue_val = 100 - int(
         round(n_select_residues * 100.0 / len(select_residues), 0)
-    )
-    STATS["usable_residues_pct"] = Stat(
-        100 - per_residue_val, desc=f"residues with LDDT > {residue_criterion}"
     )
     v_offset = 10
     ax.text(  # type: ignore
