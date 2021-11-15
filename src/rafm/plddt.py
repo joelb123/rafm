@@ -5,7 +5,7 @@ from typing import List
 from typing import Optional
 from typing import Tuple
 
-import Bio.PDB
+import Bio.PDB  # type: ignore
 import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
@@ -56,7 +56,7 @@ def extract_b_factors(file_path: Path) -> List[float]:
     elif file_ext == ".pdb":
         parser = Bio.PDB.PDBParser()
     else:
-        logger.warn(
+        logger.warning(
             f'Unrecognized file extension "{file_ext}", treating as PDB'
         )
         parser = Bio.PDB.PDBParser()
