@@ -52,7 +52,7 @@ def test_select_residues(datadir_mgr):
         for filestring in SELECT_OUTPUTS:
             assert Path(filestring).exists()
         df = pd.read_csv(RESIDUE_FILE, sep="\t")
-        assert abs(df["pLDDT"][20] - 86.5) <= TOLERANCE
+        assert abs(df["pLDDT"][20] - 86.54) <= TOLERANCE
         with Path(GLOBAL_STATS_FILE).open("r") as f:
             json_data = json.loads(f.read())
         assert json_data["usable_residues_pct"]["val"] == 52

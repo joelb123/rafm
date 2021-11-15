@@ -13,6 +13,7 @@ from . import GLOBAL_STATS_FILE
 from . import help_check
 from . import MODEL_FILE_1_NAME
 from . import MODEL_FILE_2_NAME
+from . import MODEL_FILE_3_NAME
 from . import print_docstring
 from . import STATS_FILE
 from . import STATS_INPUTS
@@ -44,6 +45,7 @@ def test_plddt_stats(datadir_mgr):
             STEM,
             MODEL_FILE_1_NAME,
             MODEL_FILE_2_NAME,
+            MODEL_FILE_3_NAME,
         ]
         try:
             COMMAND(
@@ -75,15 +77,10 @@ def test_plddt_stats(datadir_mgr):
                 assert df[key][MODEL_FILE_2_NAME] == stat_val
         assert df["passing"][MODEL_FILE_2_NAME]
         global_stats = {
-            "models_in": 2,
-            "min_length": 20,
-            "min_count": 20,
-            "plddt_lower_bound": 80,
-            "plddt_upper_bound": 100,
-            "plddt_criterion": 91.2,
-            "total_residues": 41,
+            "models_in": 3,
+            "total_residues": 190,
             "models_selected": 1,
-            "model_selection_pct": 50,
+            "model_selection_pct": 33,
             "selected_residues": 21,
         }
         with Path(GLOBAL_STATS_FILE).open("r") as f:

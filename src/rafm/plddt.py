@@ -47,9 +47,9 @@ def bin_labels(
 
 
 def extract_b_factors(file_path: Path) -> List[float]:
-    """Return an array of B factors from a PDB file specified by file_path."""
+    """Return an array of B factors from a model file specified by file_path."""
     if not file_path.exists():
-        raise ValueError(f"PDB file {file_path} does not exist")
+        raise ValueError(f"Model file {file_path} does not exist")
     file_ext = file_path.suffix
     if file_ext == ".cif":
         parser = Bio.PDB.MMCIFParser()
@@ -74,7 +74,7 @@ def compute_plddt_stats(
     min_length: int = DEFAULT_MIN_LENGTH,
     upper_bound: int = DEFAULT_PLDDT_UPPER_BOUND,
 ) -> Tuple[int, float, float, float, float, float, float, str]:
-    """Compute stats on pLDDTs for a PDB file specified by file_path."""
+    """Compute stats on pLDDTs for a model file specified by file_path."""
     plddts = np.array(extract_b_factors(file_path))
     n_pts = len(plddts)
     mean = np.NAN
@@ -107,7 +107,7 @@ def compute_plddt_stats(
 @APP.command()
 @STATS.auto_save_and_report
 def plddt_stats(
-    pdb_list: List[Path],
+    model_file_list: List[Path],
     criterion: float = DEFAULT_PLDDT_CRITERION,
     min_length: int = DEFAULT_MIN_LENGTH,
     min_count: int = DEFAULT_MIN_COUNT,
@@ -115,13 +115,13 @@ def plddt_stats(
     upper_bound: int = DEFAULT_PLDDT_UPPER_BOUND,
     file_stem: str = MODULE_NAME,
 ) -> None:
-    """Calculate stats on bounded pLDDTs from list of PDB model files."""
+    """Calculate stats on bounded pLDDTs from list of AlphaFold model files."""
     results = []
     criterion_label = bin_labels(
         CRITERION_TYPE, lower_bound, upper_bound=upper_bound
     )
     stats_file_path = Path(f"{file_stem}_plddt_stats.tsv")
-    n_models_in = len(pdb_list)
+    n_models_in = len(model_file_list)
     STATS["models_in"] = Stat(n_models_in, desc="models read in")
     STATS["min_length"] = Stat(min_length, desc="minimum sequence length")
     STATS["min_count"] = Stat(
@@ -136,7 +136,7 @@ def plddt_stats(
     STATS["plddt_criterion"] = Stat(
         criterion, desc=f"minimum bounded {CRITERION_TYPE} for selection"
     )
-    for file_path in pdb_list:
+    for file_path in model_file_list:
         results.append(
             compute_plddt_stats(
                 file_path,

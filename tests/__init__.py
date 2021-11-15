@@ -12,9 +12,11 @@ from sh import ErrorReturnCode
 
 # global constants
 PROGRAM_NAME = "rafm"
+ALPHAFOLD_SITE = "https://alphafold.ebi.ac.uk/files/"
 MODEL_FILE_1_NAME = "AF-A0A075B6Y3-F1-model_v1.pdb"
 MODEL_FILE_2_NAME = "AF-Q9NRI7-F1-model_v1.pdb"
-STATS_INPUTS = [MODEL_FILE_1_NAME, MODEL_FILE_2_NAME]
+MODEL_FILE_3_NAME = "AF-P0DP23-F1-model_v1.cif"
+STATS_INPUTS = [MODEL_FILE_1_NAME, MODEL_FILE_2_NAME, MODEL_FILE_3_NAME]
 STEM = "mytest"
 STATS_FILE = f"{STEM}_plddt_stats.tsv"
 GLOBAL_STATS_FILE = f"{PROGRAM_NAME}_stats.json"

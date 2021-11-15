@@ -66,7 +66,7 @@ Usage
 
 * *plddt-stats*
     Calculate stats on bounded pLDDTs from list of AlphaFold model files.
-    in PDB format.
+    in either PDB or mmCIF format.
 
     Options:
 
@@ -164,7 +164,7 @@ Statistical Basis
 The default parameters were chosen to select for *LDDT* values of greater
 than 80 on a set of crystal structures obtained since AlphaFold was trained.
 The distributions of *LDDT* scores for the passing and non-passing sets, along
-with an (overlapping) set of PDB files at 100% sequence identity over
+with an (overlapping) set of AlphaFold model files at 100% sequence identity over
 at least 80% of the sequence looks like this:
 
 .. image:: https://raw.githubusercontent.com/joelb123/rafm/master/docs/_static/lddt_dist.png

@@ -4,6 +4,8 @@
 import shutil
 from pathlib import Path
 
+from . import ALPHAFOLD_SITE
+from . import MODEL_FILE_3_NAME
 from . import print_docstring
 
 
@@ -17,9 +19,17 @@ def test_clean_datadir(request):
 
 
 @print_docstring()
-def test_setup_datadir(request, capsys):
+def test_setup_datadir(request, datadir_mgr, capsys):
     """Copy in and download static data."""
     testdir = Path(request.fspath.dirpath())
     datadir = testdir / "data"
     filesdir = testdir / "testdata"
     shutil.copytree(filesdir, datadir)
+    with capsys.disabled():
+        datadir_mgr.download(
+            download_url=ALPHAFOLD_SITE,
+            files=[MODEL_FILE_3_NAME],
+            scope="global",
+            md5_check=False,
+            progressbar=True,
+        )
