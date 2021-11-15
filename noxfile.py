@@ -1,5 +1,4 @@
 """Nox sessions."""
-import os
 import shutil
 import sys
 from pathlib import Path
@@ -146,15 +145,14 @@ def tests(session: Session) -> None:
         "pytest_datadir_mgr",
     )
     try:
-        os.environ[
-            "COVERAGE_FILE"
-        ] = f".coverage.{randint(0,99999999)}"  # noqa: S311
         session.run(
             "pytest",
             "--cov=rafm",
             "tests/",
             *session.posargs,
-            env=os.environ.copy(),
+            env={
+                "COVERAGE_FILE": f".coverage.{randint(0,99999999)}"  # noqa: S311
+            },
         )
         cov_list = list(Path().glob(".cov*"))
         session.log(f"coverage files = {cov_list}")
