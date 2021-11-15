@@ -25,7 +25,7 @@ rafm Reliable AlphaFold Measures
 .. |Tests| image:: https://github.com/joelb123/rafm/workflows/Tests/badge.svg
    :target: https://github.com/joelb123/rafm/actions?workflow=Tests
    :alt: Tests
-.. |Coverage| image:: https://codecov.io/gh/joelb123/rafm/branch/main/graph/badge.svg?token=fM56Q8umss
+.. |Coverage| image:: https://codecov.io/gh/joelb123/rafm/branch/master/graph/badge.svg?token=fM56Q8umss
     :target: https://codecov.io/gh/joelb123/rafm
     :alt: Codecov.io test coverage
 .. |Codacy| image:: https://api.codacy.com/project/badge/Grade/fd5f97647de84f5e846172bc0a999766

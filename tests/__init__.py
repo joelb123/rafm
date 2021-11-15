@@ -12,9 +12,9 @@ from sh import ErrorReturnCode
 
 # global constants
 PROGRAM_NAME = "rafm"
-PDB_1 = "AF-A0A075B6Y3-F1-model_v1.pdb"
-PDB_2 = "AF-Q9NRI7-F1-model_v1.pdb"
-INPUTS = [PDB_1, PDB_2]
+MODEL_FILE_1_NAME = "AF-A0A075B6Y3-F1-model_v1.pdb"
+MODEL_FILE_2_NAME = "AF-Q9NRI7-F1-model_v1.pdb"
+INPUTS = [MODEL_FILE_1_NAME, MODEL_FILE_2_NAME]
 STEM = "mytest"
 STATS_FILE = f"{STEM}_plddt_stats.tsv"
 GLOBAL_STATS_FILE = f"{PROGRAM_NAME}_stats.json"
@@ -22,6 +22,7 @@ STATS_OUTPUTS = [STATS_FILE, GLOBAL_STATS_FILE]
 RESIDUE_FILE = f"{STEM}_plddt80_91.2.tsv"
 IMAGE_FILE = f"{STEM}_dists.png"
 COMMAND = sh.Command(PROGRAM_NAME)
+TOLERANCE = 0.01
 
 
 @contextlib.contextmanager
