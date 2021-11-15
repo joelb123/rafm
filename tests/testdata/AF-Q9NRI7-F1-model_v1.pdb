@@ -193,4 +193,3 @@ ATOM    147  CD2 LEU A  21     -12.038 -12.436   8.189  1.00 86.54           C
 ATOM    148  OXT LEU A  21     -13.681  -7.368   8.692  1.00 86.54           O
 TER     149      LEU A  21
 ENDMDL
-END

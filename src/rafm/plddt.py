@@ -5,6 +5,7 @@ from typing import List
 from typing import Optional
 from typing import Tuple
 
+import Bio.PDB
 import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
@@ -18,14 +19,7 @@ from .common import APP
 from .common import STATS
 
 # global constants
-ATOM_REC: str = "ATOM"
-ATOM_START_POS: int = 13
-ATOM_STOP_POS: int = 15
 ATOMS: Tuple[str, ...] = ("CA",)
-B_FACTOR_START: int = 61
-B_FACTOR_STOP: int = 65
-REC_TYPE_START: int = 0
-REC_TYPE_STOP: int = 4
 DEFAULT_MIN_LENGTH = 20
 DEFAULT_MIN_COUNT = 20
 DEFAULT_PLDDT_LOWER_BOUND = 80
@@ -56,17 +50,20 @@ def extract_b_factors(file_path: Path) -> List[float]:
     """Return an array of B factors from a PDB file specified by file_path."""
     if not file_path.exists():
         raise ValueError(f"PDB file {file_path} does not exist")
-    with file_path.open("rU") as f:
-        # parse b_factors out of PDB file
-        b_factor_list = [
-            float(rec[B_FACTOR_START:B_FACTOR_STOP])
-            for rec in f.readlines()
-            if (
-                (len(rec) > B_FACTOR_STOP)
-                and (rec[REC_TYPE_START:REC_TYPE_STOP] == ATOM_REC)
-                and (rec[ATOM_START_POS:ATOM_STOP_POS] in ATOMS)
-            )
-        ]
+    file_ext = file_path.suffix
+    if file_ext == ".cif":
+        parser = Bio.PDB.MMCIFParser()
+    elif file_ext == ".pdb":
+        parser = Bio.PDB.PDBParser()
+    else:
+        logger.warn(
+            f'Unrecognized file extension "{file_ext}", treating as PDB'
+        )
+        parser = Bio.PDB.PDBParser()
+    structure = parser.get_structure("AF_model", file_path)
+    b_factor_list = [
+        a.bfactor for a in structure.get_atoms() if a.name in ATOMS
+    ]
     return b_factor_list
 
 

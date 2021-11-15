@@ -59,17 +59,17 @@ def test_plddt_stats(datadir_mgr):
         df = df.set_index("file")
         stat_vals_2 = {
             "residues_in_pLDDT": 21,
-            "pLDDT_mean": 90.51,
-            "pLDDT_median": 91.8,
+            "pLDDT_mean": 90.55,
+            "pLDDT_median": 91.82,
             "pLDDT80_count": 21,
             "pLDDT80_frac": 1.0,
-            "pLDDT80_mean": 90.51,
-            "pLDDT80_median": 91.8,
+            "pLDDT80_mean": 90.55,
+            "pLDDT80_median": 91.82,
             "LDDT_expect": 0.814,
         }
         for key in stat_vals_2:
             stat_val = stat_vals_2[key]
-            if type(stat_val) == float:
+            if isinstance(stat_val, float):
                 assert abs(df[key][MODEL_FILE_2_NAME] - stat_val) <= TOLERANCE
             else:
                 assert df[key][MODEL_FILE_2_NAME] == stat_val
@@ -90,7 +90,7 @@ def test_plddt_stats(datadir_mgr):
             json_data = json.loads(f.read())
         for key in global_stats:
             stat_val = global_stats[key]
-            if type(stat_val) == float:
+            if isinstance(stat_val, float):
                 assert abs(json_data[key]["val"] - stat_val) <= TOLERANCE
             else:
                 assert json_data[key]["val"] == stat_val

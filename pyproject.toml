@@ -46,6 +46,7 @@ matplotlib = "*"
 seaborn = "*"
 streamlit = "*"
 stmol = "*"
+biopython = "*"
 
 [tool.poetry.dev-dependencies]
 pytest = "*"
