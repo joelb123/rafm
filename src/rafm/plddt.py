@@ -75,7 +75,7 @@ def compute_plddt_stats(
     upper_bound: int = DEFAULT_PLDDT_UPPER_BOUND,
 ) -> Tuple[int, float, float, float, float, float, float, str]:
     """Compute stats on pLDDTs for a model file specified by file_path."""
-    plddts = np.array(extract_b_factors(file_path))
+    plddts = np.array(extract_b_factors(file_path))  # type: ignore
     n_pts = len(plddts)
     mean = np.NAN
     median = np.NAN
@@ -86,7 +86,7 @@ def compute_plddt_stats(
     if n_pts >= min_length:
         mean = plddts.mean().round(2)
         median = np.median(plddts).round(2)  # type: ignore
-        obs = plddts[(plddts >= lower_bound) & (plddts <= upper_bound)]  # type: ignore
+        obs = plddts[(plddts >= lower_bound) & (plddts <= upper_bound)]
         n_trunc_obs = len(obs)
         if len(obs) >= min_count:
             trunc_mean = obs.mean().round(2)
