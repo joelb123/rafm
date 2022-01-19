@@ -20,12 +20,12 @@ rafm Reliable AlphaFold Measures
    :target: https://github.com/joelb123/rafm
    :alt: PYPI download rate
 .. |License| image:: https://img.shields.io/badge/License-BSD%203--Clause-blue.svg
-    :target: https://github.com/joelb123/rafm/blob/master/LICENSE.txt
+    :target: https://github.com/joelb123/rafm/blob/main/LICENSE.txt
     :alt: License terms
 .. |Tests| image:: https://github.com/joelb123/rafm/workflows/Tests/badge.svg
    :target: https://github.com/joelb123/rafm/actions?workflow=Tests
    :alt: Tests
-.. |Coverage| image:: https://codecov.io/gh/joelb123/rafm/branch/master/graph/badge.svg?token=fM56Q8umss
+.. |Coverage| image:: https://codecov.io/gh/joelb123/rafm/branch/main/graph/badge.svg?token=fM56Q8umss
     :target: https://codecov.io/gh/joelb123/rafm
     :alt: Codecov.io test coverage
 .. |Codacy| image:: https://api.codacy.com/project/badge/Grade/fd5f97647de84f5e846172bc0a999766
@@ -41,8 +41,8 @@ rafm Reliable AlphaFold Measures
   :target: https://snyk.io/advisor/python/rafm
   :alt: Snyk health
 
-.. image:: https://raw.githubusercontent.com/joelb123/rafm/master/docs/_static/calmodulin.png
-   :target: https://raw.githubusercontent.com/joelb123/rafm/master/docs/_static/calmodulin.png
+.. image:: https://raw.githubusercontent.com/joelb123/rafm/main/docs/_static/calmodulin.png
+   :target: https://raw.githubusercontent.com/joelb123/rafm/main/docs/_static/calmodulin.png
    :alt: AlphaFold model and two crystal structures of calmodulin
 
 *rafm* computes per-model measures such as expected global *LDDT*
@@ -150,8 +150,8 @@ Usage
         distributions of median *pLDDT* scores with a lower bound of 80 and
         per-residue *pLDDT* scores with a minimum of 80 looks like this:
 
-        .. image:: https://raw.githubusercontent.com/joelb123/rafm/master/docs/_static/dark_dists.png
-            :target: https://raw.githubusercontent.com/joelb123/rafm/master/docs/_static/dark_dists.png
+        .. image:: https://raw.githubusercontent.com/joelb123/rafm/main/docs/_static/dark_dists.png
+            :target: https://raw.githubusercontent.com/joelb123/rafm/main/docs/_static/dark_dists.png
             :alt: Distribution of *pLDDT80* scores and per-residue *pLDDT* scores
 
 * *stats*
@@ -167,8 +167,8 @@ The distributions of *LDDT* scores for the passing and non-passing sets, along
 with an (overlapping) set of AlphaFold model files at 100% sequence identity over
 at least 80% of the sequence looks like this:
 
-.. image:: https://raw.githubusercontent.com/joelb123/rafm/master/docs/_static/lddt_dist.png
-   :target: https://raw.githubusercontent.com/joelb123/rafm/master/docs/_static/lddt_dist.png
+.. image:: https://raw.githubusercontent.com/joelb123/rafm/main/docs/_static/lddt_dist.png
+   :target: https://raw.githubusercontent.com/joelb123/rafm/main/docs/_static/lddt_dist.png
    :alt: Distribution of high-scoring, low-scoring, and high-similarity structures
 
 The markers on the *x*-axis refer to the size of conformational changes
@@ -191,8 +191,8 @@ for a surface defined by contacts between two residues. A choice of 91.2 as a
 criterion leads to the following confusion matrix versus a set of post-training
 crystal structures:
 
-.. image:: https://raw.githubusercontent.com/joelb123/rafm/master/docs/_static/confusion_matrix.png
-   :target: https://raw.githubusercontent.com/joelb123/rafm/master/docs/_static/confusion_matrix.png
+.. image:: https://raw.githubusercontent.com/joelb123/rafm/main/docs/_static/confusion_matrix.png
+   :target: https://raw.githubusercontent.com/joelb123/rafm/main/docs/_static/confusion_matrix.png
    :alt: Confusion matrix of AlphaFold models vs. crystal structures
 
 At a correlation coefficient of 0.71, this correlation isn't great, but enough
