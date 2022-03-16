@@ -13,12 +13,9 @@ rafm Reliable AlphaFold Measures
 .. |Repo| image:: https://img.shields.io/github/last-commit/joelb123/rafm
     :target: https://github.com/joelb123/rafm
     :alt: GitHub repository
-.. |Downloads| image:: https://pepy.tech/badge/rafm
-     :target: https://pepy.tech/project/rafm
-     :alt: Download stats
 .. |Download_rate| image:: https://img.shields.io/pypi/dm/rafm
-   :target: https://github.com/joelb123/rafm
-   :alt: PYPI download rate
+   :target: https://pypistats.org/packages/rafm
+   :alt: PYPI download stats
 .. |License| image:: https://img.shields.io/badge/License-BSD%203--Clause-blue.svg
     :target: https://github.com/joelb123/rafm/blob/main/LICENSE.txt
     :alt: License terms
