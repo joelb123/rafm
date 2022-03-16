@@ -1,9 +1,9 @@
 ================================
 rafm Reliable AlphaFold Measures
 ================================
-| |PyPI| |Python Version| |Repo| |Downloads| |Download_rate|
+| |PyPI| |Python Version| |Repo| |Download_rate| |License|
 
-| |License| |Tests| |Coverage| |Codacy| |Issues| |Health|
+| |Tests| |Coverage| |Codacy| |Issues| |Health|
 
 .. |PyPI| image:: https://img.shields.io/pypi/v/rafm.svg
    :target: https://pypi.org/project/rafm/
