@@ -9,7 +9,7 @@ from typing import TypedDict
 import loguru
 import typer
 from loguru import logger
-from statsdict import StatsDict  # type: ignore
+from statsdict import StatsDict
 
 from . import __doc__ as docstring
 from . import NAME

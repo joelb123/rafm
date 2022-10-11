@@ -11,7 +11,7 @@ import numpy as np
 import pandas as pd
 import seaborn as sns  # type: ignore
 from loguru import logger
-from statsdict import Stat  # type: ignore
+from statsdict import Stat
 
 from . import NAME
 from . import VERSION

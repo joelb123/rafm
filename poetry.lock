@@ -1229,19 +1229,19 @@ test = ["pytest"]
 
 [[package]]
 name = "statsdict"
-version = "0.1.7"
+version = "0.1.8"
 description = "Saveable dictionary of global stats"
 category = "main"
 optional = false
 python-versions = ">=3.8.0,<4.0.0"
 
 [package.dependencies]
-attrs = "*"
-loguru = "*"
-Pint = "*"
-tabulate = "*"
-typer = "*"
-uncertainties = "*"
+attrs = ">=21.4.0"
+loguru = ">=0.6.0"
+Pint = ">=0.19.2"
+tabulate = ">=0.8.9"
+typer = ">=0.4.1"
+uncertainties = ">=3.1.6"
 
 [[package]]
 name = "stevedore"
@@ -2354,8 +2354,8 @@ sphinxcontrib-serializinghtml = [
     {file = "sphinxcontrib_serializinghtml-1.1.5-py2.py3-none-any.whl", hash = "sha256:352a9a00ae864471d3a7ead8d7d79f5fc0b57e8b3f95e9867eb9eb28999b92fd"},
 ]
 statsdict = [
-    {file = "statsdict-0.1.7-py3-none-any.whl", hash = "sha256:9e6427acddae60badbcaaabb5c3ce357903392d393093838d2536f5320a5d0f7"},
-    {file = "statsdict-0.1.7.tar.gz", hash = "sha256:78ec5118c2f024d5788b77fad3afbea00db3c1143220e03a9a0c1d33dc9c8e27"},
+    {file = "statsdict-0.1.8-py3-none-any.whl", hash = "sha256:d35f87cb1b3595270a5968524d6b5426720812821fe16dfdfc384862b4d53daf"},
+    {file = "statsdict-0.1.8.tar.gz", hash = "sha256:9518cd1f855a663cec3a50554e5302e72dcfea6572f7354c599b67d14b127f7a"},
 ]
 stevedore = [
     {file = "stevedore-4.0.0-py3-none-any.whl", hash = "sha256:87e4d27fe96d0d7e4fc24f0cbe3463baae4ec51e81d95fbe60d2474636e0c7d8"},
