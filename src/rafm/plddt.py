@@ -11,7 +11,7 @@ import numpy as np
 import pandas as pd
 import seaborn as sns  # type: ignore
 from loguru import logger
-from statsdict import Stat
+from statsdict import Stat  # type: ignore
 
 from . import NAME
 from . import VERSION
@@ -75,7 +75,7 @@ def compute_plddt_stats(
     upper_bound: int = DEFAULT_PLDDT_UPPER_BOUND,
 ) -> Tuple[int, float, float, float, float, float, float, str]:
     """Compute stats on pLDDTs for a model file specified by file_path."""
-    plddts = np.array(extract_b_factors(file_path))  # type: ignore
+    plddts = np.array(extract_b_factors(file_path))
     n_pts = len(plddts)
     mean = np.NAN
     median = np.NAN
@@ -85,12 +85,12 @@ def compute_plddt_stats(
     trunc_frac = np.NAN
     if n_pts >= min_length:
         mean = plddts.mean().round(2)
-        median = np.median(plddts).round(2)  # type: ignore
+        median = np.median(plddts).round(2)
         obs = plddts[(plddts >= lower_bound) & (plddts <= upper_bound)]
         n_trunc_obs = len(obs)
         if len(obs) >= min_count:
             trunc_mean = obs.mean().round(2)
-            trunc_median = np.median(obs).round(2)  # type: ignore
+            trunc_median = np.median(obs).round(2)
             trunc_frac = round(n_trunc_obs / n_pts, 2)
     return (
         n_pts,
