@@ -224,14 +224,15 @@ Credits
 -------
 
 This project was generated from the
-`UNM Translational Informatics Python Cookiecutter`_ template.
+Hypermodern Python Cookiecutter template.
+
+Testing is done under Python 3.11 and 3.10 on Linux and MacOS platforms.
 
 *rafm* was written by Joel Berendzen and Jessica Binder.
 
 .. _Cookiecutter: https://github.com/audreyr/cookiecutter
 .. _MIT license: https://opensource.org/licenses/MIT
 .. _PyPI: https://pypi.org/
-.. _UNM Translational Informatics Python Cookiecutter: https://github.com/joelb123/cookiecutter-joelb123-python
 .. _file an issue: https://github.com/joelb123/rafm/issues
 .. _pip: https://pip.pypa.io/
 .. github-only
